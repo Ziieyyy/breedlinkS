@@ -27,6 +27,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:8081";
+
 /* ─── MAIN PAGE ─── */
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +58,7 @@ export default function LandingPage() {
             <a href="#faq">FAQ</a>
           </div>
           <div className="navbar-cta">
-            <a href="http://localhost:8081/login" className="btn btn-primary">Get Started</a>
+            <a href={`${APP_URL}/login`} className="btn btn-primary">Get Started</a>
           </div>
           <button className="navbar-mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)} aria-label="Toggle menu">
             <span /><span /><span />
@@ -80,7 +82,7 @@ export default function LandingPage() {
                 Connect with verified breeders, discover compatible cats nearby, upload health certifications, and manage breeding agreements — all in one secure platform.
               </p>
               <div className="hero-buttons">
-                <a href="http://localhost:8081/login" className="btn btn-primary btn-lg">Get Started Free →</a>
+                <a href={`${APP_URL}/login`} className="btn btn-primary btn-lg">Get Started Free →</a>
                 <a href="#how-it-works" className="btn btn-secondary btn-lg">Explore Platform</a>
               </div>
               <div className="hero-stats">
@@ -352,8 +354,8 @@ export default function LandingPage() {
             <h2 className="section-title">Ready To Find The Perfect Match?</h2>
             <p className="section-subtitle">Join thousands of responsible cat owners and breeders on BreedLink today.</p>
             <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="http://localhost:8081/create-account" className="btn btn-primary btn-lg">Create Free Account →</a>
-              <a href="http://localhost:8081/login" className="btn btn-secondary btn-lg">Login</a>
+              <a href={`${APP_URL}/create-account`} className="btn btn-primary btn-lg">Create Free Account →</a>
+              <a href={`${APP_URL}/login`} className="btn btn-secondary btn-lg">Login</a>
             </div>
           </div>
         </div>
