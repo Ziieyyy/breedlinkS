@@ -1,5 +1,5 @@
 {
-  "buildCommand": "expo export -p web",
+  "buildCommand": "npx expo export",
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [

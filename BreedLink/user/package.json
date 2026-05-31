@@ -7,9 +7,9 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "build:web": "expo export -p web",
-    "build:android": "expo prebuild -p android",
-    "vercel-build": "expo export -p web",
+    "build:web": "npx expo export",
+    "build:android": "npx expo prebuild -p android",
+    "vercel-build": "npx expo export",
     "lint": "eslint ."
   },
   "dependencies": {
