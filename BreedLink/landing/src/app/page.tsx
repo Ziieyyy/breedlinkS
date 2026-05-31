@@ -27,7 +27,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:8081";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://breedlinks.vercel.app";
 
 /* ─── MAIN PAGE ─── */
 export default function LandingPage() {

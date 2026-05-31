@@ -13,13 +13,14 @@ export default function Index() {
         try {
           const { data: { session } } = await supabase.auth.getSession();
           if (!session) {
-            window.location.href = 'http://localhost:3000';
+            // Stay inside Expo web application during development/local run
+            setLoading(false);
           } else {
             setLoading(false);
           }
         } catch (error) {
           console.error('Error checking session on index:', error);
-          window.location.href = 'http://localhost:3000';
+          setLoading(false);
         }
       };
       checkSessionAndRedirect();
