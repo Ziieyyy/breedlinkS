@@ -1,0 +1,31 @@
+env: load .env
+env: export GEMINI_API_KEY
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+Web .\index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+λ node_modules\expo-router\node\render.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+λ Bundled 2959ms node_modules\expo-router\node\render.js (1621 modules)
+Web .\index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1588/1588)
+Web Bundled 3962ms index.ts (1588 modules)
+[expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+λ  LOG  CatProfileScreen rendered with params: {}
+λ  LOG  CatProfileScreen rendered with params: {}
+λ  LOG  ChatScreen rendered with params: {}
+λ  LOG  SettingsScreen rendered
+C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\expo\node_modules\@expo\cli\build\src\utils\errors.js:130
+    throw error;
+    ^
+
+ReferenceError: window is not defined
+    at getValue (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@react-native-async-storage\async-storage\lib\commonjs\AsyncStorage.js:63:52)
+    at C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@react-native-async-storage\async-storage\lib\commonjs\AsyncStorage.js:39:21
+    at new Promise (<anonymous>)
+    at createPromise (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@react-native-async-storage\async-storage\lib\commonjs\AsyncStorage.js:37:10)
+    at Object.getItem (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@react-native-async-storage\async-storage\lib\commonjs\AsyncStorage.js:63:12)
+    at getItemAsync (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@supabase\auth-js\dist\main\lib\helpers.js:136:33)
+    at s.__loadSession (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@supabase\auth-js\dist\main\GoTrueClient.js:1000:54)
+    at s._useSession (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@supabase\auth-js\dist\main\GoTrueClient.js:981:39)
+    at s._emitInitialSession (C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@supabase\auth-js\dist\main\GoTrueClient.js:1435:27)
+    at C:\Users\khair\OneDrive\Desktop\BREEDDLINK\BreedLink 8.1.2026 ai fix\BreedLink\user\node_modules\@supabase\auth-js\dist\main\GoTrueClient.js:1429:22
+
+Node.js v22.19.0

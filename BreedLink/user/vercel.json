@@ -2,9 +2,15 @@
   "buildCommand": "npx --node-options=\"--max-old-space-size=4096\" expo export -p web",
   "outputDirectory": "dist",
   "framework": null,
+  "crons": [
+    {
+      "path": "/api/keepalive",
+      "schedule": "0 0 * * *"
+    }
+  ],
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!api/|api$).*)",
       "destination": "/index.html"
     }
   ]

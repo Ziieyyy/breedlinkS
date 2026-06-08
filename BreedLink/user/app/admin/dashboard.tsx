@@ -22,6 +22,7 @@ export default function DashboardScreen() {
   const [verifiedBreeders, setVerifiedBreeders] = useState(0);
   const [pendingVerifications, setPendingVerifications] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
+  const [keepAliveWarning, setKeepAliveWarning] = useState<string | null>(null);
 
   // Check admin authentication on component mount
   useEffect(() => {
@@ -110,6 +111,30 @@ export default function DashboardScreen() {
       setMatchesMade(matchCount || 0);
       setVerifiedBreeders(completedCount || 0);
       setPendingVerifications((pendingFemaleCount || 0) + (pendingMaleCount || 0));
+
+      // Check keep-alive status
+      const { data: statusData, error: statusError } = await supabase
+        .from('system_status')
+        .select('*')
+        .eq('id', 1)
+        .single();
+      
+      if (!statusError && statusData) {
+        const lastRun = new Date(statusData.last_run);
+        const now = new Date();
+        const diffHours = (now.getTime() - lastRun.getTime()) / (1000 * 60 * 60);
+        if (diffHours > 24) {
+          setKeepAliveWarning('CRITICAL: Supabase Keep-alive job has not run in over 24 hours. Database may pause soon!');
+        } else if (statusData.status === 'failed') {
+          setKeepAliveWarning(`WARNING: Keep-alive job failed. Error: ${statusData.error_message}`);
+        } else {
+          setKeepAliveWarning(null);
+        }
+      } else if (statusError && statusError.code === '42P01') {
+        setKeepAliveWarning('WARNING: system_status table does not exist. Keep-alive tracking is offline.');
+      } else if (statusError && statusError.code !== 'PGRST116') {
+        setKeepAliveWarning('WARNING: Could not fetch keep-alive status.');
+      }
     } catch (err) {
       console.error('Error fetching stats:', err);
     }
@@ -173,6 +198,13 @@ export default function DashboardScreen() {
         >
           <Text style={styles.pageTitle}>Dashboard</Text>
 
+          {keepAliveWarning && (
+            <View style={styles.warningBanner}>
+              <Icon name="warning" size={24} color="#fff" />
+              <Text style={styles.warningText}>{keepAliveWarning}</Text>
+            </View>
+          )}
+
           <View style={styles.statsGrid}>
             <StatCard title="Total Users" value={String(totalUsers)} icon="people" onPress={() => router.push('/admin/owner-management' as any)} />
             <StatCard title="Total Cats" value={String(totalCats)} icon="heart" onPress={() => router.push('/admin/cat-management' as any)} />
@@ -233,6 +265,21 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.text,
     marginBottom: 24,
+  },
+  warningBanner: {
+    backgroundColor: '#ff4444',
+    padding: 16,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    gap: 12,
+  },
+  warningText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    flex: 1,
+    flexWrap: 'wrap',
   },
   statsGrid: {
     flexDirection: 'row',
